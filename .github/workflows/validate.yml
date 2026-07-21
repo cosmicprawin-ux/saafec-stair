@@ -22,6 +22,8 @@ jobs:
         run: |
           PYTHONPYCACHEPREFIX=/tmp/saafec-pycache python -m compileall -q scripts
           python scripts/tools/check_installation.py --source-only
+      - name: Test output contracts
+        run: python -m unittest discover -s tests -v
       - name: Reject bundled runtime material
         run: |
           if git ls-files | grep -E '(^|/)(cluster_runtime|palmetto_cpu_gpu|scheduler_logs|slurm_logs)/|\.slurm$|\.(pt|pth|ckpt|safetensors|bin)$'; then

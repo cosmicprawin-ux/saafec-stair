@@ -20,6 +20,18 @@ from core.structure_identifiers import pdb_stem, structure_key  # noqa: E402
 
 AA_ORDER = set("ACDEFGHIKLMNPQRSTVWY")
 MUTATION_RE = re.compile(r"^\s*([A-Za-z])\s*(\d+)\s*([A-Za-z])\s*$")
+PREDICTION_FIELDS = [
+    "pdb",
+    "mutation",
+    "sequence_index",
+    "chain",
+    "pdb_residue_number",
+    "insertion_code",
+    "wild_type_aa",
+    "mutant_aa",
+    "predicted_DDG_kcal_per_mol",
+]
+VALIDATION_FIELDS = [*PREDICTION_FIELDS, "status", "message"]
 
 
 def parse_args() -> argparse.Namespace:
@@ -229,20 +241,11 @@ def extract_predictions(specified_rows: list[dict[str, str]], matrices: dict[str
     return output
 
 
-def write_rows(csv_path: Path, rows: list[dict[str, str]]) -> None:
-    fieldnames = [
-        "pdb",
-        "mutation",
-        "sequence_index",
-        "chain",
-        "pdb_residue_number",
-        "insertion_code",
-        "wild_type_aa",
-        "mutant_aa",
-        "predicted_DDG_kcal_per_mol",
-        "status",
-        "message",
-    ]
+def write_rows(
+    csv_path: Path,
+    rows: list[dict[str, str]],
+    fieldnames: list[str],
+) -> None:
     csv_path.parent.mkdir(parents=True, exist_ok=True)
     with csv_path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
@@ -266,17 +269,30 @@ def main() -> None:
     specified_rows = read_table(specified_table)
     matrices = load_matrices(matrix_dir)
     rows = extract_predictions(specified_rows, matrices)
+    prediction_rows = [row for row in rows if row.get("status") == "ok"]
+    validation_errors = [row for row in rows if row.get("status") != "ok"]
 
     csv_path = output_dir / "specified_single_mutation_DDG_predictions.csv"
-    write_rows(csv_path, rows)
+    write_rows(csv_path, prediction_rows, PREDICTION_FIELDS)
+
+    validation_csv_path = output_dir / "specified_single_mutation_DDG_validation_errors.csv"
+    if validation_errors:
+        write_rows(validation_csv_path, validation_errors, VALIDATION_FIELDS)
+    else:
+        validation_csv_path.unlink(missing_ok=True)
+        validation_csv_path.with_suffix(".txt").unlink(missing_ok=True)
 
     summary = {
         "specified_mutation_table": work_path_str(specified_table),
         "matrix_dir": work_path_str(matrix_dir),
         "output_csv": work_path_str(csv_path),
         "output_txt": work_path_str(csv_path.with_suffix(".txt")),
+        "validation_errors_csv": (
+            work_path_str(validation_csv_path) if validation_errors else None
+        ),
         "n_requested": len(rows),
-        "n_predicted": sum(1 for row in rows if row.get("status") == "ok"),
+        "n_predicted": len(prediction_rows),
+        "n_validation_errors": len(validation_errors),
         "status_counts": {
             status: sum(1 for row in rows if row.get("status") == status)
             for status in sorted({row.get("status", "") for row in rows})

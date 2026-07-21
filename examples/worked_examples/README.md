@@ -44,11 +44,10 @@ user-facing CSV outputs from a successful run of the current runner:
   the requested substitutions under `specified_DDG_predictions/`.
 - Double mutation: the final requested double-mutation prediction table.
 
-The tracked single-mutation outputs intentionally exclude per-seed tables and
-the ensemble-member detail table. Those files document internal aggregation,
-whereas the averaged matrices and specified-mutation table are the prediction
-products intended for users. A full run also writes heatmaps, feature caches,
-manifests, summaries, and other diagnostic files below the ignored
+The single-mutation runner averages the three seed matrices internally and
+writes only the averaged matrices and, when requested, the specified-mutation
+table as prediction products. A full run also writes heatmaps, feature caches,
+manifests, summaries, and validation diagnostics below the ignored
 `run_outputs/` directory.
 
 Reusable input templates are maintained separately in

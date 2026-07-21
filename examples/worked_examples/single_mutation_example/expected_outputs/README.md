@@ -17,10 +17,12 @@ substitution for each input protein.
 
 `specified_DDG_predictions/specified_single_mutation_DDG_predictions.csv`
 contains only the substitutions requested in the specified-mutation input
-table. The `status` and `message` columns report whether each requested value
-could be extracted from the corresponding full matrix.
+table. It is a prediction-only table and does not mix validation state into the
+scientific result columns.
 
 Use this compact table when only listed mutations are needed. The runner still
-computes the matrices required for inference, but per-seed and ensemble-member
-detail tables are not included here because they are internal aggregation and
-diagnostic outputs rather than the final prediction product.
+computes the matrices required for inference and averages the three seed
+matrices before writing outputs. If any requested mutation cannot be extracted,
+the runner writes a separate
+`specified_single_mutation_DDG_validation_errors.csv` diagnostic report and
+records counts in the summary JSON.

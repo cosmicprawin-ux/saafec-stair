@@ -38,7 +38,9 @@ and machine-specific paths.
 2. Run Foldseek and SaProt to generate structure-aware embeddings.
 3. Run ProteinMPNN to generate residue logits on the same sequence axis.
 4. Apply the three SAAFEC-STAIR single-mutation inference heads.
-5. Average seed predictions and write matrices, tables, and heatmaps.
+5. Average the three seed matrices internally and write only final averaged
+   matrices, optional specified-mutation tables, and heatmaps as prediction
+   products.
 
 ## Double-Mutation Flow
 

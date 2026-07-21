@@ -98,7 +98,9 @@ bash run_saafec_stair_inference.sh
 
 `INPUT_TABLE` selects the proteins for full `L x 20` prediction matrices.
 Set `SPECIFIED_MUTATION_TABLE` when a separate table containing only the listed
-single-mutation predictions is also wanted.
+single-mutation predictions is also wanted. The prediction CSV contains only
+successful scientific results; unresolved requests are written separately to a
+validation-error CSV and summarized in JSON.
 
 ```bash
 MODE=double \

@@ -7,9 +7,8 @@ copies of files produced by the current inference runner.
 
 For exact current output filenames and schemas, use the selected outputs in
 [`examples/worked_examples/`](../worked_examples/) or run those examples. The
-runner additionally writes per-seed results, matrices, feature caches,
-visualizations, and diagnostic summaries that are intentionally not duplicated
-here.
+runner additionally writes averaged matrices, feature caches, visualizations,
+and diagnostic summaries that are intentionally not duplicated here.
 
 ```text
 examples/example_datasets/

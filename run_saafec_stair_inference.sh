@@ -181,7 +181,6 @@ run_single() {
   if [[ -n "${SPECIFIED_MUTATION_TABLE:-}" ]]; then
     echo "  Specified DDG:   $(display_path "$out_root")/specified_DDG_predictions/"
   fi
-  echo "  Ensemble table:  $(display_path "$prediction_root")/ensemble/mutation_predictions.csv"
   echo "  Text copies:     $(display_path "$out_root")/**/*.txt"
 }
 
