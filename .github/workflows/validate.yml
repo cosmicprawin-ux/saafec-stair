@@ -1,0 +1,30 @@
+name: Validate public inference package
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check shell syntax
+        run: |
+          bash -n run_saafec_stair_inference.sh
+          bash -n scripts/setup/prepare_asset_directories.sh
+          bash -n examples/worked_examples/single_mutation_example/run_example.sh
+          bash -n examples/worked_examples/double_mutation_example/run_example.sh
+      - name: Check Python syntax and source layout
+        run: |
+          PYTHONPYCACHEPREFIX=/tmp/saafec-pycache python -m compileall -q scripts
+          python scripts/tools/check_installation.py --source-only
+      - name: Reject bundled runtime material
+        run: |
+          if git ls-files | grep -E '(^|/)(cluster_runtime|palmetto_cpu_gpu|scheduler_logs|slurm_logs)/|\.slurm$|\.(pt|pth|ckpt|safetensors|bin)$'; then
+            echo "Tracked scheduler, checkpoint, model, or binary material is not allowed." >&2
+            exit 1
+          fi

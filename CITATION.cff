@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use SAAFEC-STAIR, cite the SAAFEC-STAIR paper (citation forthcoming) and the external methods listed in docs/METHODS_AND_CITATIONS.md."
+title: "SAAFEC-STAIR"
+type: software
+authors:
+  - name: "cosmicprawin-ux"
+repository-code: "https://github.com/cosmicprawin-ux/saafec-stair"
+url: "https://github.com/cosmicprawin-ux/saafec-stair"
+license: MIT
+keywords:
+  - protein stability
+  - mutation effects
+  - free-energy change
+  - SaProt
+  - ProteinMPNN

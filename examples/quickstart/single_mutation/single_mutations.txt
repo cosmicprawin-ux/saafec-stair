@@ -1,0 +1,3 @@
+pdb	chain	mutation	position	wt_aa	mut_aa
+2L33_A	A	M1A	1	M	A
+1EY0_A	A	A1G	1	A	G
