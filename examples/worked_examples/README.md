@@ -35,17 +35,21 @@ directory.
 
 ## Included Expected Outputs
 
-Each example's tracked `expected_outputs/` directory contains a deliberately
-small subset of final CSV outputs from a successful run of the current runner:
+Each example's tracked `expected_outputs/` directory contains the final
+user-facing CSV outputs from a successful run of the current runner:
 
-- Single mutation: the final ensemble table and the specified-mutation table.
+- Single mutation, full-matrix use: one three-seed-averaged `L x 20` predicted
+  DDG matrix per input structure under `predictions/predicted_DDG/`.
+- Single mutation, specified-mutation use: one compact table containing only
+  the requested substitutions under `specified_DDG_predictions/`.
 - Double mutation: the final requested double-mutation prediction table.
 
-These files preserve the current filenames, column names, row order, statuses,
-and predicted ddG values. A full run also writes per-seed tables, matrices,
-heatmaps, feature caches, manifests, summaries, and other diagnostic files.
-Those generated files remain below `run_outputs/` and are not duplicated in the
-repository.
+The tracked single-mutation outputs intentionally exclude per-seed tables and
+the ensemble-member detail table. Those files document internal aggregation,
+whereas the averaged matrices and specified-mutation table are the prediction
+products intended for users. A full run also writes heatmaps, feature caches,
+manifests, summaries, and other diagnostic files below the ignored
+`run_outputs/` directory.
 
 Reusable input templates are maintained separately in
 [`examples/input_templates/`](../input_templates/).

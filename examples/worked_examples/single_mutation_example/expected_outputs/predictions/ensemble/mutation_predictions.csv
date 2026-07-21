@@ -1,3 +1,0 @@
-request_name,table_sheet,pdb,chain,model_position_1based,wt_aa,mut_aa,mutation,predicted_ΔΔG_kcal_per_mol,pdb_residue_ids,pdb_resseqs,pdb_ins_codes,ensemble_n,ensemble_member_ΔΔG_predictions_kcal_per_mol,ensemble_member_ΔΔG_prediction_std_kcal_per_mol
-worked_single_mutation,text_input,1EY0_A,A,6,K,A,K6A,-0.14440437654654184,A:6,6,,3,-0.1949444711;-0.1492233425;-0.08904531598,0.04336722717872433
-worked_single_mutation,text_input,2L33_A,A,1,M,A,M1A,0.1787290225426356,A:1,1,,3,0.115745157;0.3048468232;0.1155950874,0.08917877312880439
