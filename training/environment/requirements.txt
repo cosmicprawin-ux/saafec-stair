@@ -1,0 +1,23 @@
+# CUDA 12.1 build used for the training workflows. Choose the corresponding
+# PyTorch index/build instead when using another CUDA version or CPU-only mode.
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.5.1+cu121
+
+# Numerical analysis and workbook input.
+numpy==2.4.2
+scipy==1.17.0
+openpyxl==3.1.5
+
+# SaProt model and tokenizer loading.
+transformers==4.52.4
+tokenizers==0.21.4
+safetensors==0.7.0
+huggingface-hub==0.36.2
+hf-xet==1.2.0
+
+# Pinned direct runtime dependencies of the model-loading stack.
+requests==2.32.5
+filelock==3.20.0
+packaging==25.0
+regex==2026.2.19
+PyYAML==6.0.3

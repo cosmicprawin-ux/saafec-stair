@@ -1,0 +1,4 @@
+Unit(DDG)=kcal/mol,,,,,,,,
+pdb,mutation,sequence_index,chain,pdb_residue_number,wild_type_aa,mutant_aa,,Predicted_DDG
+2L33_A,M1A,1,A,1,M,A,,0.18
+1EY0_A,K6A,6,A,6,K,A,,-0.14

@@ -1,0 +1,29 @@
+**/__pycache__/
+**/*.py[cod]
+**/output/
+**/run_outputs/
+**/run_logs/
+**/logs/
+**/errors/
+**/.cache/
+*.out
+*.err
+*.log
+.DS_Store
+.venv/
+venv/
+
+# Training inputs and external assets are distributed separately. These
+# names match the repository-relative fallbacks documented in README.md.
+data/
+datasets/
+structures/
+assets/
+
+# Defense in depth for model artifacts if a workflow is copied or run outside
+# the companion repository, whose root .gitignore provides the same guard.
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin

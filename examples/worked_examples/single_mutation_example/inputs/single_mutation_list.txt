@@ -1,0 +1,8 @@
+# Required columns: pdb (without the .pdb extension), chain, mut.
+# Columns may be separated by spaces or tabs.
+# Wild-type and mutant amino acids use standard one-letter amino-acid codes.
+# mut format: WT_AA + residue_number + mutant_AA (example: M1A).
+
+pdb	chain	mut
+2L33_A	A	M1A
+1EY0_A	A	K6A

@@ -1,0 +1,53 @@
+# Generated outputs and logs
+output/
+**/run_outputs/
+**/logs/
+**/.cache/
+*.out
+*.err
+*.log
+
+# Local scheduler and cluster artifacts
+*.slurm
+slurm_logs/
+scheduler_logs/
+cluster_runtime/
+
+# Python and local environments
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+.hf_checkpoint_download_tmp/
+
+# Local training inputs are distributed separately
+data/
+structures/
+
+# Third-party executables, models, source, and project checkpoints are restored
+# locally. Only placeholder files may be tracked in these directories.
+assets/external/bin/*
+!assets/external/bin/.gitkeep
+assets/external/models/**
+!assets/external/models/**/
+!assets/external/models/**/.gitkeep
+assets/external/source/**
+!assets/external/source/**/
+!assets/external/source/**/.gitkeep
+assets/checkpoints/**
+!assets/checkpoints/**/
+!assets/checkpoints/**/.gitkeep
+
+# Defense in depth for model artifacts anywhere in the repository
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+
+# Published SAAFEC-STAIR inference checkpoints
+!/inference_checkpoints/single_mutation/seeds/seed_1337/best_head.pt
+!/inference_checkpoints/single_mutation/seeds/seed_2027/best_head.pt
+!/inference_checkpoints/single_mutation/seeds/seed_3407/best_head.pt
+!/inference_checkpoints/double_mutation/best_double_mutation_package.pt

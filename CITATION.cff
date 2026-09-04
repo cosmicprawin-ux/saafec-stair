@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use SAAFEC-STAIR, please cite this software. The citation metadata will be updated when the associated paper is published."
+title: "SAAFEC-STAIR"
+type: software
+authors:
+  - family-names: "Rimal"
+    given-names: "Prawin"
+repository-code: "https://github.com/cosmicprawin-ux/saafec-stair"
+url: "https://github.com/cosmicprawin-ux/saafec-stair"
+license: MIT
+keywords:
+  - protein stability
+  - mutation effects
+  - free-energy change
+  - SaProt
+  - ProteinMPNN
